@@ -1,0 +1,42 @@
+.page-404 {
+  height: 100vh;
+  background: url(../images/404.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .inner-404 {
+    text-align: center;
+    h1 {
+      font-size: 150px;
+    }
+    h2 {
+      font-size: 50px;
+      margin-bottom: 30px;
+    }
+    a {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $clr_white;
+      padding: 10px 30px;
+      background-color: $clr_main;
+    }
+  }
+}
+
+.error404 {
+  .nav-toggle, .logo-container, .main-footer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page-404 .inner-404 {
+    h1 {
+      font-size: 100px;
+    }
+    h2 {
+      font-size: 30px;
+    }
+  }
+}

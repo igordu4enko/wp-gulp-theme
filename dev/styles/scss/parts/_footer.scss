@@ -1,0 +1,31 @@
+.main-footer {
+  overflow-x: hidden;
+  padding: 50px 0;
+  font-size: 13px;
+  font-weight: 300;
+  color: $clr_dark;
+  .social-wrap {
+    margin-top: 0;
+    float: right;
+    line-height: 0;
+    ul {
+      margin: 0;
+      a {
+        color: $clr_btn;
+        &:hover {
+          color: $clr_white;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .main-footer .social-wrap {
+    float: none;
+    margin-top: 20px;
+    ul {
+      padding-left: 0;
+    }
+  }
+}

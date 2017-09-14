@@ -1,0 +1,56 @@
+$clr_main: #333;
+$clr_menu: #0d8689;
+$clr_btn: #00B2B7;
+$clr_btn_light: #c4ebe8;
+$clr_white: #fff;
+$clr_light: #f2f2f2;
+$clr_dark: #888;
+$clr_black: #000;
+$light_mask: rgba(0, 0, 0, 0.4);
+$dark_mask: rgba(0, 0, 0, 0.9);
+$clr_success: #28ca41;
+$clr_orange: #ffbd2e;
+$clr_danger: #ff5f57;
+
+@mixin sw {
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 3px;
+  background: $clr_white;
+  border: none;
+  border-radius: 4px;
+}
+
+@mixin btn {
+  pointer-events: all;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@mixin parent_size {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin lstn {
+  list-style-type: none;
+  padding: 0;
+}
+
+@mixin tran {
+  transition: all .5s ease;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
