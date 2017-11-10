@@ -26,23 +26,23 @@ concatCss = require('gulp-concat-css');
 gulp.task('browserSync', function () {
     //watch files
     var files = [
-        'dev/images/**/*.*',
-        'dev/scripts/**/*.*',
-        'dev/styles/**/*.*',
+        'development/images/**/*.*',
+        'development/scripts/**/*.*',
+        'development/styles/**/*.*',
         '*.php'
     ];
 
     //initialize browsersync
     browserSync.init(files, {
         //browsersync with a php server
-        proxy: "localhost/ihordu4enko.dev",
+        proxy: "localhost/ihordu4enko.dev",//your local port
         notify: false
     });
 });
 
 //compressing images & handle SVG files
 gulp.task('images', function () {
-    gulp.src('dev/images/*.*')
+    gulp.src('development/images/*.*')
     //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         .pipe(imagemin({optimizationLevel: 7, progressive: true, interlaced: true}))
@@ -53,7 +53,7 @@ gulp.task('images', function () {
 //minify our vendor files
 gulp.task('vendorStyles', function () {
     //get all vendor libraries
-    return gulp.src('dev/styles/vendor/**/*.css')
+    return gulp.src('development/css/**/*.css')
     //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         //catch errors
@@ -71,7 +71,7 @@ gulp.task('vendorStyles', function () {
 //compiling our SCSS files
 gulp.task('styles', function () {
     //the initializer / master SCSS file, which will just be a file that imports everything
-    return gulp.src('dev/styles/scss/**/*.scss')
+    return gulp.src('development/sass/**/*.scss')
     //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber({
             errorHandler: function (err) {
@@ -99,7 +99,7 @@ gulp.task('styles', function () {
 //compiling our vendor Javascripts
 gulp.task('vendorScripts', function () {
     //this is where our dev JS scripts are
-    return gulp.src('dev/scripts/vendor/*.js')
+    return gulp.src('development/scripts/*.js')
     //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         //this is the filename of the compressed version of our JS
@@ -116,7 +116,7 @@ gulp.task('vendorScripts', function () {
 //compiling our  Javascripts
 gulp.task('scripts', function () {
     //this is where our dev JS scripts are
-    return gulp.src('dev/scripts/index.js')
+    return gulp.src('development/index.js')
     //prevent pipe breaking caused by errors from gulp plugins
         .pipe(plumber())
         //this is the filename of the compressed version of our JS
@@ -141,30 +141,30 @@ gulp.task('php', function () {
 });
 
 gulp.task('watch', function () {
-    watch('styles/scss/**/*.scss', function () {
-        gulp.start('styles');
-    });
-    watch('styles/vendor/**/*.*', function () {
+    watch('development/css/**/*.*', function () {
         gulp.start('vendorStyles');
     });
-    watch('scripts/*.js', function () {
-        gulp.start('scripts');
+    watch('development/sass/**/*.scss', function () {
+        gulp.start('styles');
     });
-    watch('scripts/vendor/**/*.js', function () {
+    watch('development/scripts/**/*.js', function () {
         gulp.start('vendorScripts');
     });
-    watch('images/**/*.*', function () {
+    watch('development/index.js', function () {
+        gulp.start('scripts');
+    });
+    watch('development/images/**/*.*', function () {
         gulp.start('images');
     });
 });
 
 gulp.task('build', [
     'watch',
-    'styles',
-    'vendorStyles',
-    'scripts',
-    'vendorScripts',
     'images',
+    'vendorStyles',
+    'styles',
+    'vendorScripts',
+    'scripts'
 ]);
 
 //this is our master task when you run `gulp` in CLI / Terminal
