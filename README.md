@@ -2,8 +2,6 @@
 
 Develop Wordpress theme using Gulp
 
-All development files are in folder /dev
-
-ReduxFramework is included
+All development files are in folder /development
 
 To start develop, run "gulp" in console in theme root folder.
